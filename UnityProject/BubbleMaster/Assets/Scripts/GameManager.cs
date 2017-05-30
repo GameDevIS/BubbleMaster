@@ -6,18 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	public Text scoreText;
-	public Text playerLives;
-	public Text endScoreText;
-
-	public GameObject gameOverPanel;
-
-	public PlayerController ourPlayer;
+	public Text scoreText;							// UI text score
+	public Text playerLives;						// UI player Lives
+	public Text endScoreText;						// UI text score shown at game over panel screen
+	public GameObject gameOverPanel;				// UI Panel shown after player lose all lives
+	public PlayerController ourPlayer;				// Ref to the player
 
 	void Start () {
-
 		ourPlayer = GameObject.FindWithTag ("Player").GetComponent<PlayerController> ();
-
 	}
 
 	void Update () {
@@ -31,6 +27,7 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
+	// Pause game and display game over panel
 	void EndGame()
 	{
 		Time.timeScale = 0;
@@ -39,6 +36,7 @@ public class GameManager : MonoBehaviour {
 		Destroy (ourPlayer.gameObject);
 	}
 
+	// Reload current scene
 	public void PlayAgain()
 	{
 		Time.timeScale = 1;

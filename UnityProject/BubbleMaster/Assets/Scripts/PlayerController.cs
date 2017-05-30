@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public int lives;
-	public int score;
-	public int bubbleScore;
-	public int collectableScore;
+	// Public Vars
+	public int lives;								// Player lives count
+	public int score;								// Player score
+	public int bubbleScore;							// Amount to add to score if we destroy a bubble
+	public int collectableScore;					// Amount to add to score after picking up collectable
 
-	public int jumpForce;
-	public int playerSpeed;
-	public float shootDelay;
+	public int jumpForce;							// Player jump force
+	public int playerSpeed;							// Player speed
+	public float shootDelay;						// delay between bubble shoots
+	public float flyForce;							// force applied to player after got hit
 
-	public float flyForce;
+	public int blinksCount;							// nubmer of blinks to do in player respawn func
+	public float timeBetweenBlinks;					// time between blinks
 
-	public int blinksCount;
-	public float timeBetweenBlinks;
-
-	public bool isGrounded;
-	public float groundRadius;
-	public LayerMask whatIsGround;
-	public Transform[] groundPoints;
-
-	public GameObject bubblePrefab;
-	public Transform bubbleSpawnPoint;
-
-	public Transform playerSpawnPosition;
+	public bool isGrounded;							// Is player touching the ground
+	public float groundRadius;						// Radius to check if player touching ground
+	public LayerMask whatIsGround;					// Defines which layer is the ground layer to check isGrounded aginst
+	public Transform[] groundPoints;				// Points we check if touching the ground layer
+	public GameObject bubblePrefab;					// Bubble prefab
+	public Transform bubbleSpawnPoint;				// Bubble spawn position
+	public Transform playerSpawnPosition;			// Player spawn position
 
 	// Sounds
 	public AudioClip jumpSound;
@@ -34,9 +32,10 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip pickUpSound;
 	public AudioClip deathSound;
 
-	bool canShoot;
-	Vector2 direction;
-	Rigidbody2D rb2d;
+	// Private Vars 
+	bool canShoot;									// define if the player can\can't shoot
+	Vector2 direction;								// direction the player moving
+	Rigidbody2D rb2d;		
 	AudioSource audioSource;
 
 	// Use this for initialization
@@ -59,6 +58,7 @@ public class PlayerController : MonoBehaviour {
 			audioSource.PlayOneShot (jumpSound);
 		}
 
+		// Checks if left control was pressed and if player can shoot then shoot bubble
 		if(Input.GetKeyDown(KeyCode.LeftControl) && canShoot == true)
 		{
 			StartCoroutine(ShootBubble ());

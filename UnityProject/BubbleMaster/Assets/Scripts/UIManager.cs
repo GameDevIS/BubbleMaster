@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
-	public string firstSceneName;
+	public string firstSceneName;					// The first scene to load after clicking play button
 
 	public void Play()
 	{

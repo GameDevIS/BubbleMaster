@@ -3,37 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BubbleController : MonoBehaviour {
-	
-	public float speed;
-	public float shootSpeed;
-	public float enemyCapturedSpeed;
-	public Vector2 direction;
-	public float timeBetweenScale;
 
-	public int floatingBubblesLayerID;
+	// Public Vars
+	public float speed;								// Bubble Speed
+	public float shootSpeed;						// Bubble Shoot Speed
+	public float enemyCapturedSpeed;				// Bubble speed while enemy is captured
 
-	public Sprite grayBubble;
-	public Sprite transparentBubble;
+	public Vector2 direction;						// Bubble moving direction
+	public float timeBetweenScale;					// The time between switching scale sizes
+	public int floatingBubblesLayerID;				// Floating bubbles layer id to switch to after spawn
+	public GameObject collectablePrefab;			// Collectable prefab
 
-	public Sprite enemyTrapped;
-	public GameObject collectablePrefab;
+	public Sprite grayBubble;						// Bubble gray sprite
+	public Sprite transparentBubble;				// Bubble transparent sprite
+	public Sprite enemyTrapped;						// Bubble sprite while enemy is captured
 
-	public AudioClip enemyPopSound;
-	public AudioClip bubblePopSound;
+	// Sounds
+	public AudioClip enemyPopSound;					// Sound when bubble pop while enemy captured
+	public AudioClip bubblePopSound;				// Sound while destroying empty bubble
 
-	float bubbleYoffset;
-	float screenTopY;
-	float screenBottomY;
+	// Private Vars 
+	float screenTopY;								// Screen upper most y position
+	float screenBottomY;							// Screen lowest y position
+	float bubbleYoffset;							// Bubble extents in the height so we can add that to the offset check
+	bool isSpawnFinish;								// Is bubble spawn finished
+	bool isEnemyCaptured;							// Is there enemy captured in bubble
+	float originalSpeed;							// Orignal speed so we can switch back after bubble spawn
+	Rigidbody2D rb2d;								// Ref to Rigidbody2D component
+	Vector2 originalScale;							// Original scale used in the spawn bubble func
+	AudioSource audioSource;						// Ref to Audio source componenet
 
-	Rigidbody2D rb2d;
-	bool isSpawnFinish;
-	bool isEnemyCaptured;
-	float originalSpeed;
-	Vector2 originalScale;
-	AudioSource audioSource;
-
-	Coroutine spawnBubbleRoutine;
-	Coroutine destroyBubbleOverTimeRoutine;
+	// Coroutines references
+	Coroutine spawnBubbleRoutine;					// Ref to spawn bubble coroutine
+	Coroutine destroyBubbleOverTimeRoutine;			// Ref to destroy bubble over time coroutine
 
 	// Use this for initialization
 	void Start () {

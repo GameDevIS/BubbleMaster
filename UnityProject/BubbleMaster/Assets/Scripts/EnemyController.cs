@@ -24,11 +24,9 @@ public class EnemyController : MonoBehaviour {
 		if (other.CompareTag("Bubble")) {
 			Destroy (this.gameObject);
 		}
-
-
-
 	}
 
+	// Flip enemy to the other direction
 	void Flip()
 	{
 		direction = -direction;
@@ -39,7 +37,6 @@ public class EnemyController : MonoBehaviour {
 		transform.localScale = newScale;
 
 	}
-
 
 	void FixedUpdate () {
 

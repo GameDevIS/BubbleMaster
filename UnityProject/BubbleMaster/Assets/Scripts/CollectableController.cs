@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CollectableController : MonoBehaviour {
 
-	public int force;
-	public Sprite[] sprites;
+	public int force;									// the force that's been applied to collectable in spawn collectable
+	public Sprite[] sprites;							// sprite array of all the possible collectable sprites
 
 	Rigidbody2D rb2d;
 	BoxCollider2D boxCollider2d;
@@ -31,12 +31,11 @@ public class CollectableController : MonoBehaviour {
 
 	void Update()
 	{
-
+		// Check if collectable is offscreen bring it back to the screen other side
 		if (transform.position.y > screenTopY) {
 
 			transform.position = new Vector2 (transform.position.x, screenBottomY);
 		}
-
 	}
 
 	IEnumerator SpawnCollectable()
